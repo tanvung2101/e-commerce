@@ -1,33 +1,22 @@
 "use client"
-import { ItemSlide, SEO, Title } from "@/components";
+import { ItemSlide, Title } from "@/components";
 // import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import categoryApis from "./../../apis/categoryApí";
-import axios from "axios";
 import productsApis from "@/apis/productApis";
 import { GLOBAL_STATUS } from "@/constants";
 import CheckBox from "@/components/checkbox";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsFunnel } from "react-icons/bs";
 
-export async function generateStaticParams({ params, searchParams }, parent) {
-  // "use server"
-  console.log('dgfsfgfh',params)
-  return {
-    title: 'n,n,m',
-  }
-}
-
-// export async function getData() {
-//     // const category = await categoryApis.getAllCategory();
-//     const params = {
-//       size: 14,
-//       getMainImage: true,
-//       status: GLOBAL_STATUS.ACTIVE,
-//     };
-//     const product = await productsApis.getAllProducts(params);
-//     return product.data.rows
+// export async function generateStaticParams({ params, searchParams }, parent) {
+//   // "use server"
+//   console.log('dgfsfgfh',params)
+//   return {
+//     title: 'San pham',
 //   }
+// }
+
 
 const initFilter = {
   category: [],
@@ -35,7 +24,6 @@ const initFilter = {
 };
 
 const PageProduct = () => {
-//   const data = await getData();
 
   const [show, setShow] = useState(false)
 
@@ -44,7 +32,6 @@ const PageProduct = () => {
   const [productCategory, setProductCategory] = useState([]);
   const [productsOptions, setProductsOptions] = useState([]);
 const getData = async () => {
-    const category = await categoryApis.getAllCategory();
     const params = {
       size: 14,
       getMainImage: true,

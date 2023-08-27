@@ -6,6 +6,10 @@ import Image from 'next/image';
 import React from 'react'
 import { GrNext, GrPrevious } from 'react-icons/gr';
 
+export const metadata = {
+  title: 'Học viện đào tạo mĩ thẩm mĩ SHESHI',
+}
+
 
 export async function getData() {
     const contents = await configPageApis.getListConfigPageContent({

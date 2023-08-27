@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, Suspense } from "react";
-import { etCookie, setCookie } from 'cookies-next';
+import { setCookie } from 'cookies-next';
 import Loading from '@/components/Loading'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,12 +12,9 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { setProfileAuth, setToken } from "@/redux/accountSlice";
-import { STORAGE_KEY } from "@/constants/storage-key";
 import { checkConditionLevelUp } from "@/utils/funcs";
 import useToggleValue from "@/hook/useToggleValue";
 import Link from "next/link";
-// import { useTranslation } from 'next-i18next'
-// import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Layout from "@/components/Layout";
 import IconPassword from "@/components/IconPassword";
 import { Button, Input } from "@/components";
@@ -48,7 +45,6 @@ const PageLogin = () => {
   // const { t } = useTranslation('common');
   const router = useRouter();
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.account);
 
   const [loading, setLoading] = useState(false);
   const { value, handleToggleValue } = useToggleValue()

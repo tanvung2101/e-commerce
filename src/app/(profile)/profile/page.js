@@ -17,12 +17,9 @@ import Layout from '@/components/Layout';
 import InputCopy from '@/components/InputCopy';
 import { Button, Input, SelectCustom } from '@/components';
 import PhoneInput from '@/components/PhoneInput';
-import { getCookies } from 'cookies-next';
 
 
 const PageProfile = () => {
-  // const {token: token1} = getCookies()
-  // console.log(token1)
   const { token, info } = useSelector((state) => state.account);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -140,7 +137,8 @@ const PageProfile = () => {
       });
   }, [token, dispatch]);
   // useEffect(() => {
-    if (!token) return router.push('/login', '', { shallow: true })
+    // if (!token) return router.push('/login', '', { shallow: true })
+    if (!token) return router.push('/login')
   // }, [router, token])
   return (
     <>

@@ -4,6 +4,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
+export const metadata = {
+    title: 'Tin tức',
+  }
+
 async function getData(){
     const res  = await fetch(`${process.env.API}/news`)
 

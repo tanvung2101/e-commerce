@@ -5,10 +5,6 @@ import { GLOBAL_STATUS } from "@/constants";
 import { useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 
-async function getData(){
-
-}
-
 const Search = () => {
     const [product, setProduct] = useState()
     const searchParams = useSearchParams()
@@ -18,7 +14,7 @@ const getData = useCallback( async() => {
     const params = {
         name: search,
         getMainImage: true,
-        tatus: GLOBAL_STATUS.ACTIVE,
+        status: GLOBAL_STATUS.ACTIVE,
     };
     const data = await productsApis.getAllProductsClient(params);
     setProduct(data.rows)

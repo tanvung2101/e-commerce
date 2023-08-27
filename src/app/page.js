@@ -83,7 +83,7 @@ async function getOutstandingProducts() {
 }
 
 async function fetchGetNew() {
-  const res  = await fetch(`${process.env.API}/news`, { next: { revalidate: 3600 } })
+  const res  = await fetch(`${process.env.API}/news`, { cache: 'force-cache' } )
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')

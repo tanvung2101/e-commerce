@@ -1,6 +1,4 @@
 "use client"
-
-import { lazy } from 'react';
 import accountApis from '@/apis/accountApi';
 import { BONUS_TYPE, BONUS_TYPE_MAP, MASTER_DATA_NAME } from '@/constants';
 import axios from 'axios';
