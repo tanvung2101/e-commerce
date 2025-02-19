@@ -7,10 +7,10 @@ export function middleware(request) {
     if (request.nextUrl.pathname.startsWith("/login") || 
     request.nextUrl.pathname.startsWith("/sign-up")
     ){
-        if(request.cookies.has("token")) {
-          const loginUrl = new URL('/', request.url)
-          return NextResponse.redirect(loginUrl)
-      } 
+      //   if(request.cookies.has("token")) {
+      //     const loginUrl = new URL('/', request.url)
+      //     return NextResponse.redirect(loginUrl)
+      // } 
     }
     if (request.nextUrl.pathname.startsWith("/profile") || 
         request.nextUrl.pathname.startsWith("/my-bonus") || 

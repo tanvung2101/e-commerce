@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { getCookie, getCookies } from 'cookies-next';
 import configPageApis from '@/apis/configPageApis';
 import { CONTENT_PAGE, GLOBAL_STATUS, SLIDE_PAGE } from '@/constants';
 import { GrNext, GrPrevious } from 'react-icons/gr';
@@ -8,7 +7,6 @@ import Link from 'next/link';
 import SliderSlick from '@/components/SliderSlick';
 import feed1 from "../public/feed1.jpg";
 import productsApis from '@/apis/productApis';
-import { newsApisServer } from '@/apis/newApis';
 // import { useRouter } from 'next/navigation';
 
 

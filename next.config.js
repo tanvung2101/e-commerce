@@ -1,10 +1,11 @@
 // const { i18n } = require('./next-i18next.config');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
+  // compress: false,
+  // reactStrictMode: true,
+  // swcMinify: true,
   images: {
-    domains: ['localhost', 'images.unsplash.com', 'plus.unsplash.com', "ap-southeast-1-ddfe-dev-app.s3.ap-southeast-1.amazonaws.com", "media.istockphoto.com", "play-lh.googleusercontent.com", "upload.wikimedia.org", "news.khangz.com", "ap-southeast-1-sheshi-dev-app.s3.ap-southeast-1.amazonaws.com"],
+    domains: ['localhost', 'images.unsplash.com', 'plus.unsplash.com', "ap-southeast-1-ddfe-dev-app.s3.ap-southeast-1.amazonaws.com", "media.istockphoto.com", "play-lh.googleusercontent.com", "upload.wikimedia.org", "news.khangz.com", "ap-southeast-1-sheshi-dev-app.s3.ap-southeast-1.amazonaws.com", "api.sheshi.vn"],
   },
   experimental: {
     forceSwcTransforms: true,

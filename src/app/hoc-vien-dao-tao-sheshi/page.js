@@ -1,78 +1,77 @@
-import configPageApis from '@/apis/configPageApis';
-import { Title } from '@/components';
-import SliderSlick from '@/components/SliderSlick';
-import { CONTENT_PAGE, SLIDE_PAGE } from '@/constants';
-import Image from 'next/image';
-import React from 'react'
-import { GrNext, GrPrevious } from 'react-icons/gr';
+import configPageApis from "@/apis/configPageApis";
+import { Title } from "@/components";
+import SliderSlick from "@/components/SliderSlick";
+import { CONTENT_PAGE, SLIDE_PAGE } from "@/constants";
+import Image from "next/image";
+import React from "react";
+import { GrNext, GrPrevious } from "react-icons/gr";
 
 export const metadata = {
-  title: 'Học viện đào tạo mĩ thẩm mĩ SHESHI',
-}
-
+  title: "Học viện đào tạo mĩ thẩm mĩ SHESHI",
+};
 
 export async function getData() {
-    const contents = await configPageApis.getListConfigPageContent({
-      pageCode: [
-        CONTENT_PAGE.SCHOOL_PAGE_OVERVIEW,
-        CONTENT_PAGE.SCHOOL_PAGE_PROCESS,
-      ],
-    });
-    const images = await configPageApis.getListConfigPageSlide({
-      pageCode: [SLIDE_PAGE.SCHOOL_PAGE],
-    });
-    const data = { contents: contents.data, images: images.data };
-  
-    return data
-  }
+  const contents = await configPageApis.getListConfigPageContent({
+    pageCode: [
+      CONTENT_PAGE.SCHOOL_PAGE_OVERVIEW,
+      CONTENT_PAGE.SCHOOL_PAGE_PROCESS,
+    ],
+  });
+  const images = await configPageApis.getListConfigPageSlide({
+    pageCode: [SLIDE_PAGE.SCHOOL_PAGE],
+  });
+  const data = { contents: contents.data, images: images.data };
+
+  return data;
+}
 
 const Academy = async () => {
-    const data = await getData()
-    const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-        <div {...props}>
-          <GrPrevious></GrPrevious>
-        </div>
-      );
-      const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-        <div {...props}>
-          <GrNext></GrNext>
-        </div>
-      );
-      const settings_gal = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        prevArrow: <SlickArrowLeft />,
-        nextArrow: <SlickArrowRight />,
-        className: "center",
-        centerMode: true,
-        responsive: [
-          {
-            breakpoint: 1198,
-            settings: {
-              infinite: true,
-              slidesToShow: 3,
-              slidesToScroll: 3,
-              rows: 1,
-            },
-          },
-          {
-            breakpoint: 576,
-            settings: {
-              infinite: true,
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              rows: 1,
-            },
-          },
-        ],
-      };
-    console.log(data)
+  const data = await getData();
+  const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+    <div {...props}>
+      <GrPrevious></GrPrevious>
+    </div>
+  );
+  const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+    <div {...props}>
+      <GrNext></GrNext>
+    </div>
+  );
+  const settings_gal = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    prevArrow: <SlickArrowLeft />,
+    nextArrow: <SlickArrowRight />,
+    className: "center",
+    centerMode: true,
+    responsive: [
+      {
+        breakpoint: 1198,
+        settings: {
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          rows: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          rows: 1,
+        },
+      },
+    ],
+  };
+  console.log(data);
   return (
     <>
-        <div className="bg-light-pink py-5">
+      <div className="bg-light-pink py-5">
         <Title className="text-4xl font-bold max-sm:text-2xl max-sm:px-8">
           học viện đào tạo thẩm mĩ sheshi
         </Title>
@@ -98,10 +97,12 @@ const Academy = async () => {
             ></div>
             <div className="max-h-[700px] max-lg:h-[500px] max-lg:mt-5 max-sm:h-[200px]">
               <Image
-                src={data.contents.find(
-                  (content) =>
-                    content.pageCode === CONTENT_PAGE.SCHOOL_PAGE_OVERVIEW
-                ).image || ''}
+                src={
+                  data.contents.find(
+                    (content) =>
+                      content.pageCode === CONTENT_PAGE.SCHOOL_PAGE_OVERVIEW
+                  ).image || ""
+                }
                 alt=""
                 width={300}
                 height={500}
@@ -112,10 +113,12 @@ const Academy = async () => {
           <div className="w-full flex flex-col items-center px-10 max-lg:mb-5 max-lg:px-1 max-lg:flex-col-reverse max-sm:mb-0">
             <div className="h-[700px] mt-10 max-lg:h-[500px] max-lg:mt-5 max-sm:h-[200px]">
               <Image
-                src={data.contents.find(
-                  (content) =>
-                    content.pageCode === CONTENT_PAGE.SCHOOL_PAGE_PROCESS
-                ).image || ''}
+                src={
+                  data.contents.find(
+                    (content) =>
+                      content.pageCode === CONTENT_PAGE.SCHOOL_PAGE_PROCESS
+                  ).image || ""
+                }
                 alt=""
                 width={500}
                 height={500}
@@ -141,14 +144,14 @@ const Academy = async () => {
                 alt=""
                 width={400}
                 height={300}
-              // className="w-[80%] h-[80%] object-cover"
+                // className="w-[80%] h-[80%] object-cover"
               ></Image>
             </div>
           ))}
         </SliderSlick>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Academy
+export default Academy;

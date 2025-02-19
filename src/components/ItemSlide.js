@@ -5,15 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BsBag, BsFillBagPlusFill } from "react-icons/bs";
-import Portal from "./productModal";
 import Button from "./Button";
 import { AiOutlineClose } from "react-icons/ai";
-import { IMAGE_TYPE, MASTER_DATA_NAME } from "@/constants";
+import { MASTER_DATA_NAME } from "@/constants";
 import axios from "axios";
 import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, removeItem, updateItem } from "@/redux/cartItemSlice";
+import { addItem } from "@/redux/cartItemSlice";
 import { useRouter } from "next/navigation";
 // import useTrans from "@/page/hooks/useTrans";
 import { remove } from "@/redux/productModalSlice";
@@ -155,6 +154,7 @@ const ItemSlide = ({ propProduct }) => {
     dispatch(addItem(newItem));
     toast.success("Sản phẩm đã thêm vào vỏ hàng");
   };
+  console.log(value)
   const goToCart = () => {
     if (+quantity < 1) return false;
     let newItem = {

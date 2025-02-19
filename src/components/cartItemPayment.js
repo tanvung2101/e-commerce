@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 const CartItemPayment = ({ item, value, index }) => {
   const dispatch = useDispatch();
-  // console.log('prop.item', item)
+  console.log('prop.item', item)
 
   const [quantity, setQuantity] = useState(+item.quantity);
   const [product, setProduct] = useState(item)

@@ -1,6 +1,6 @@
 "use client";
 import { lazy, Suspense } from "react";
-const NavbarUser = lazy(() => import("./../../../../components/NavbarUser"));
+const NavbarUser = lazy(() => import("../../../../components/NavbarUser"));
 const OrderContent = lazy(() =>
   import("./../../../../components/OrderContent")
 );

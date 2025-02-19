@@ -11,6 +11,7 @@ import useToggleValue from "@/hook/useToggleValue";
 import Layout from "@/components/Layout";
 import { Input } from "@/components";
 import IconPassword from "@/components/IconPassword";
+import { useMutation } from "@tanstack/react-query";
 
 
 
@@ -18,8 +19,8 @@ const PageRegister = () => {
   const router = useRouter();
   // const { t } = useTranslation('common');
 
-  const { value: hiddentPass, handleToggleValue: handlePassword } = useToggleValue()
-  const { value: hiddentConfirmPass, handleToggleValue: handleConfirmPass } = useToggleValue()
+  const { value: hiddenPass, handleToggleValue: handlePassword } = useToggleValue()
+  const { value: hiddenConfirmPass, handleToggleValue: handleConfirmPass } = useToggleValue()
 
   const schema = useMemo(() => yup
     .object()
@@ -67,20 +68,32 @@ const PageRegister = () => {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  const onSubmit = (data) => {
-    console.log(isValid)
-    const { fullName, email, password, referralCode, } = data;
+  const {
+    mutateAsync: signin,
+    isSuccess,
+    data,
+  } = useMutation({
+    mutationFn: AuthApis.signUpUser,
+    onSuccess: (data) => {
+      if (data) router.push("/login");
+      
+      toast.success('Đăng kí thành công')
+    },
+    onError: (error) => toast.error(error.response.data.message)
+  });
+  const onSubmit = async (data) => {
     console.log(data)
-    AuthApis.signUpUser({ email, password, fullName, referralCode })
-      .then(() => {
-        toast.success('Đăng ký tài khoản thành công')
-        router.push('/login')
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message)
-        console.log(err)
-      })
-    .finally(() => console.log("thành công"));
+    await signin(data)
+    // AuthApis.signUpUser({ email, password, fullName, referralCode })
+    //   .then(() => {
+    //     toast.success('Đăng ký tài khoản thành công')
+    //     router.push('/login')
+    //   })
+    //   .catch((err) => {
+    //     toast.error(err.response.data.message)
+    //     console.log(err)
+    //   })
+    // .finally(() => console.log("thành công"));
   };
 
   return (
@@ -114,19 +127,19 @@ const PageRegister = () => {
                   <Input
                     {...register("password")}
                     placeholder={'Mật khẩu'}
-                    type={hiddentPass ? "text" : "password"}
+                    type={hiddenPass ? "text" : "password"}
                     errors={errors?.password?.message}
                   />
-                  <IconPassword onClick={handlePassword} hiddentPass={hiddentPass}></IconPassword>
+                  <IconPassword onClick={handlePassword} hiddentPass={hiddenPass}></IconPassword>
                 </Layout>
                 <Layout label={'Xác nhận mật khẩu'} errors={errors?.confirmPass?.message}>
                   <Input
                     {...register("confirmPass")}
                     placeholder={'Xác nhận mật khẩu'}
-                    type={hiddentConfirmPass ? "text" : "password"}
+                    type={hiddenConfirmPass ? "text" : "password"}
                     errors={errors?.confirmPass?.message}
                   />
-                  <IconPassword onClick={handleConfirmPass} hiddentPass={hiddentConfirmPass}></IconPassword>
+                  <IconPassword onClick={handleConfirmPass} hiddentPass={hiddenConfirmPass}></IconPassword>
                 </Layout>
                 <Layout label={'ID giới thiệu'} errors={errors?.referralCode?.message} icon={true}>
                   <Input

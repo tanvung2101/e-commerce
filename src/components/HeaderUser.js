@@ -107,7 +107,7 @@ const HeaderUser = () => {
     dispatch(deleteAll());
     dispatch(logout())
     deleteCookie('token')
-    // router.push('/')
+    router.push('/')
   };
 
   const onGetAvatar = () => {
